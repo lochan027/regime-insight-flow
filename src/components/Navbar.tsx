@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Activity, BookOpen, ExternalLink, Menu, X } from "lucide-react";
+import { Activity, BookOpen, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { SWAGGER_URL } from "@/lib/constants";
 
 const links = [
   { href: "#explorer", label: "Explorer" },
@@ -58,19 +57,15 @@ export function Navbar() {
                 {l.label}
               </a>
             ))}
-            <a
-              href={SWAGGER_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="ml-1 inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-surface-2 transition-colors"
-            >
-              Swagger <ExternalLink className="h-3.5 w-3.5" />
-            </a>
           </nav>
 
           <div className="hidden md:flex items-center gap-2">
             <Button asChild variant="ghost" size="sm">
-              <a href="#docs"><BookOpen className="h-4 w-4" /> Docs</a>
+              <a href="#docs">
+                <span className="inline-flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" /> Docs
+                </span>
+              </a>
             </Button>
             <Button asChild size="sm" className="shadow-glow">
               <a href="#explorer">Try the API</a>
@@ -92,11 +87,9 @@ export function Navbar() {
               <a key={l.href} href={l.href} onClick={() => setOpen(false)}
                  className="rounded-lg px-3 py-2 text-sm hover:bg-surface-2">{l.label}</a>
             ))}
-            <a href={SWAGGER_URL} target="_blank" rel="noreferrer"
-               className="rounded-lg px-3 py-2 text-sm hover:bg-surface-2 inline-flex items-center gap-1">
-              Swagger <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-            <Button asChild size="sm" className="mt-1"><a href="#explorer" onClick={() => setOpen(false)}>Try the API</a></Button>
+            <Button asChild size="sm" className="mt-1">
+              <a href="#explorer" onClick={() => setOpen(false)}>Try the API</a>
+            </Button>
           </div>
         )}
       </div>
