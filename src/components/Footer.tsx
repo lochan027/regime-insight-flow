@@ -1,5 +1,4 @@
 import { Activity } from "lucide-react";
-import { SWAGGER_URL } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -24,7 +23,7 @@ export function Footer() {
               <li><a href="#explorer" className="text-foreground/80 hover:text-foreground">API explorer</a></li>
               <li><a href="#use-cases" className="text-foreground/80 hover:text-foreground">Use cases</a></li>
               <li><a href="#docs" className="text-foreground/80 hover:text-foreground">API docs</a></li>
-              <li><a href={SWAGGER_URL} target="_blank" rel="noreferrer" className="text-foreground/80 hover:text-foreground">Swagger UI ↗</a></li>
+              <li><a href="#top" className="text-foreground/80 hover:text-foreground">Home</a></li>
             </ul>
           </div>
 
