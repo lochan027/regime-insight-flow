@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Copy, ExternalLink, Lock, Zap } from "lucide-react";
+import { Check, Copy, Lock, Zap } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
-import { API_BASE_URL, SWAGGER_URL } from "@/lib/constants";
+import { API_BASE_URL } from "@/lib/constants";
 
 interface Endpoint {
   method: "GET";
@@ -81,13 +81,8 @@ export function ApiDocsSection() {
             value={<code className="font-mono text-sm break-all">{API_BASE_URL}</code>} />
           <InfoCard icon={Lock} label="Auth"
             value={<span className="text-sm">No API key required for public endpoints</span>} />
-          <InfoCard icon={ExternalLink} label="Interactive docs"
-            value={
-              <a href={SWAGGER_URL} target="_blank" rel="noreferrer"
-                 className="text-sm text-primary inline-flex items-center gap-1 hover:underline">
-                Open Swagger UI <ExternalLink className="h-3.5 w-3.5" />
-              </a>
-            } />
+          <InfoCard icon={Zap} label="Rate limit"
+            value={<span className="text-sm">60 requests / minute per IP</span>} />
         </div>
 
         <p className="text-xs text-muted-foreground mb-8">
