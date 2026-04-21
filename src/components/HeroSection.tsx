@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { HeroLiveCard } from "./HeroLiveCard";
-import { SWAGGER_URL } from "@/lib/constants";
+
 
 const stats = [
   { value: 25, suffix: "", label: "FRED indicators" },
@@ -97,13 +97,18 @@ export function HeroSection() {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <Button asChild size="lg" className="shadow-glow">
-                <a href="#explorer">Try the live API <ArrowRight className="h-4 w-4" /></a>
+                <a href="#explorer">
+                  <span className="inline-flex items-center gap-2">
+                    Try the live API <ArrowRight className="h-4 w-4" />
+                  </span>
+                </a>
               </Button>
               <Button asChild size="lg" variant="secondary">
-                <a href="#docs"><BookOpen className="h-4 w-4" /> View docs</a>
-              </Button>
-              <Button asChild size="lg" variant="ghost">
-                <a href={SWAGGER_URL} target="_blank" rel="noreferrer">Swagger UI <ExternalLink className="h-4 w-4" /></a>
+                <a href="#docs">
+                  <span className="inline-flex items-center gap-2">
+                    <BookOpen className="h-4 w-4" /> View docs
+                  </span>
+                </a>
               </Button>
             </motion.div>
 

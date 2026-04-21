@@ -6,8 +6,6 @@ export const API_BASE_URL =
 // so the UI is fully alive during development.
 export const USE_MOCK = !import.meta.env.VITE_API_BASE_URL;
 
-export const SWAGGER_URL = `${API_BASE_URL}/docs`;
-
 export const REGIME_DESCRIPTIONS: Record<string, string> = {
   Goldilocks: "Strong growth, contained inflation. Risk assets typically lead.",
   Reflation: "Accelerating growth coming off a trough. Cyclicals & credit shine.",
