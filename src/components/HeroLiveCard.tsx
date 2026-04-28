@@ -11,7 +11,7 @@ import {
 } from "@/lib/format";
 
 export function HeroLiveCard() {
-  const { data, loading, error, refetch } = useCurrentRegime();
+  const { data, loading, error, isFallback, refetch } = useCurrentRegime();
 
   return (
     <motion.div
@@ -40,8 +40,9 @@ export function HeroLiveCard() {
                     {data.regime}
                   </div>
                   <div className="mt-2 text-sm text-muted-foreground">
-                    In place since <span className="text-foreground">{formatDate(data.in_place_since)}</span> ·{" "}
-                    <span className="text-foreground">{data.months_in_regime} months</span>
+                    As of <span className="text-foreground">{formatDate(data.as_of, { month: "short", year: "numeric" })}</span> ·{" "}
+                    in place since <span className="text-foreground">{formatDate(data.in_place_since)}</span> ·{" "}
+                    <span className="text-foreground">{data.months_in_regime} months in regime</span>
                   </div>
                 </div>
                 <div className="text-right">
@@ -66,6 +67,11 @@ export function HeroLiveCard() {
                 <div className="text-xs uppercase tracking-wider text-muted-foreground mb-3">
                   Top performing assets
                 </div>
+                {data.top_assets.length === 0 && (
+                  <div className="text-sm text-muted-foreground rounded-lg border hairline bg-surface-2 px-3 py-2">
+                    Asset outlook is unavailable in fallback mode.
+                  </div>
+                )}
                 <ul className="space-y-3">
                   {data.top_assets.map((a, i) => {
                     const max = Math.max(...data.top_assets.map((x) => Math.abs(x.return_pct)));
@@ -99,6 +105,11 @@ export function HeroLiveCard() {
                   <RefreshCw className="h-3 w-3" /> Refresh
                 </button>
               </div>
+              {isFallback && (
+                <div className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200">
+                  Using latest value from history because /regime/current is currently unavailable.
+                </div>
+              )}
             </div>
           )}
         </div>

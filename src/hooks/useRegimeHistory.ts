@@ -10,6 +10,7 @@ export function useRegimeHistory(params: HistoryParams = {}) {
   useEffect(() => {
     let active = true;
     setLoading(true);
+    setError(null);
     getRegimeHistory(params)
       .then((r) => { if (active) setData(r.data); })
       .catch((e) => { if (active) setError(e?.message ?? "error"); })

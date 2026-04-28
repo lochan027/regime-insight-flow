@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, Copy, Lock, Zap } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
-import { API_BASE_URL } from "@/lib/constants";
+import { API_BASE_URL, ACTUAL_API_BASE_URL } from "@/lib/constants";
 
 interface Endpoint {
   method: "GET";
@@ -54,14 +54,26 @@ const ENDPOINTS: Endpoint[] = [
       { name: "matches[].forward_returns_12m", type: "array", desc: "Subsequent 12-month asset returns" },
     ],
   },
+  {
+    method: "GET",
+    path: "/regime/insight",
+    desc: "Returns a generated insight summary with top assets and transition risk outlook.",
+    params: [],
+    fields: [
+      { name: "regime", type: "string", desc: "Current regime label" },
+      { name: "insight", type: "string", desc: "Narrative summary for the current regime" },
+      { name: "top_assets[]", type: "array", desc: "Top asset performers in the current regime" },
+      { name: "risk_outlook[]", type: "array", desc: "Transition probabilities to nearby regimes" },
+    ],
+  },
 ];
 
 const samples = (path: string) => ({
-  curl: `curl -s ${API_BASE_URL}${path}`,
-  js: `const res = await fetch("${API_BASE_URL}${path}");
+  curl: `curl -s ${ACTUAL_API_BASE_URL}${path}`,
+  js: `const res = await fetch("${ACTUAL_API_BASE_URL}${path}");
 const data = await res.json();`,
   py: `import requests
-data = requests.get("${API_BASE_URL}${path}").json()`,
+data = requests.get("${ACTUAL_API_BASE_URL}${path}").json()`,
 });
 
 type Lang = "curl" | "js" | "py";
@@ -72,13 +84,13 @@ export function ApiDocsSection() {
       <div className="container">
         <SectionHeader
           eyebrow="API reference"
-          title="Three endpoints. Clean JSON. No auth required."
+          title="Four endpoints. Clean JSON. No auth required."
           description="Designed to be readable in 60 seconds and integrated in five minutes."
         />
 
         <div className="grid md:grid-cols-3 gap-4 mb-8">
           <InfoCard icon={Zap} label="Base URL"
-            value={<code className="font-mono text-sm break-all">{API_BASE_URL}</code>} />
+            value={<code className="font-mono text-sm break-all">{ACTUAL_API_BASE_URL}</code>} />
           <InfoCard icon={Lock} label="Auth"
             value={<span className="text-sm">No API key required for public endpoints</span>} />
           <InfoCard icon={Zap} label="Rate limit"

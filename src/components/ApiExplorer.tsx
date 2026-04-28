@@ -35,12 +35,12 @@ const PRESETS: Preset[] = [
   {
     label: "2008 financial crisis",
     tab: "history",
-    apply: () => ({ start: "2007-01", end: "2009-12", includeIndicators: true }),
+    apply: () => ({ start: "2007-01-01", end: "2009-12-01", includeIndicators: true }),
   },
   {
     label: "2021 inflation surge",
     tab: "history",
-    apply: () => ({ start: "2021-01", end: "2022-12", includeIndicators: true }),
+    apply: () => ({ start: "2021-01-01", end: "2022-12-01", includeIndicators: true }),
   },
   {
     label: "Historical analogues today",
@@ -52,8 +52,8 @@ const PRESETS: Preset[] = [
 export function ApiExplorer() {
   const [tab, setTab] = useState<TabKey>("current");
   const [state, setState] = useState<ExplorerState>({
-    start: "2010-01",
-    end: today().slice(0, 7),
+    start: "2010-01-01",
+    end: today(),
     includeIndicators: false,
     date: today(),
     n: 3,
@@ -167,13 +167,13 @@ export function ApiExplorer() {
                     {tab === "history" && (
                       <div className="grid sm:grid-cols-2 gap-4">
                         <div className="space-y-1.5">
-                          <Label htmlFor="start">Start date (YYYY-MM)</Label>
-                          <Input id="start" value={state.start}
+                          <Label htmlFor="start">Start date</Label>
+                          <Input id="start" type="date" value={state.start}
                             onChange={(e) => setState((s) => ({ ...s, start: e.target.value }))} />
                         </div>
                         <div className="space-y-1.5">
-                          <Label htmlFor="end">End date (YYYY-MM)</Label>
-                          <Input id="end" value={state.end}
+                          <Label htmlFor="end">End date</Label>
+                          <Input id="end" type="date" value={state.end}
                             onChange={(e) => setState((s) => ({ ...s, end: e.target.value }))} />
                         </div>
                         <label className="sm:col-span-2 inline-flex items-center gap-2 mt-1 text-sm cursor-pointer">

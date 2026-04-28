@@ -4,6 +4,7 @@ import { Activity, BookOpen, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const links = [
+  { href: "#portfolio", label: "Portfolio" },
   { href: "#explorer", label: "Explorer" },
   { href: "#use-cases", label: "Use cases" },
   { href: "#docs", label: "API docs" },

@@ -46,6 +46,27 @@ export interface RegimeAnaloguesResponse {
   matches: AnalogueMatch[];
 }
 
+export interface InsightAsset {
+  asset: string;
+  annualized_return: number;
+  mean_monthly_return?: number;
+  win_rate?: number;
+  month_count?: number;
+}
+
+export interface TransitionRisk {
+  from: string;
+  to: string;
+  prob: number;
+}
+
+export interface RegimeInsightResponse {
+  regime: string;
+  insight: string;
+  top_assets: InsightAsset[];
+  risk_outlook: TransitionRisk[];
+}
+
 export interface ApiError {
   status: number;
   message: string;

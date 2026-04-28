@@ -2,6 +2,11 @@ export const API_BASE_URL =
   (import.meta.env.VITE_API_BASE_URL as string | undefined)?.replace(/\/$/, "") ||
   "https://api.example.com";
 
+// Actual backend URL for documentation and API references
+export const ACTUAL_API_BASE_URL =
+  (import.meta.env.VITE_API_PROXY_TARGET as string | undefined)?.replace(/\/$/, "") ||
+  "https://macroregime.hub.zerve.cloud";
+
 // When base URL is the placeholder, the API client serves rich mock data
 // so the UI is fully alive during development.
 export const USE_MOCK = !import.meta.env.VITE_API_BASE_URL;

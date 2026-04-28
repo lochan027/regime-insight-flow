@@ -7,12 +7,12 @@ import { HeroLiveCard } from "./HeroLiveCard";
 
 const stats = [
   { value: 25, suffix: "", label: "FRED indicators" },
-  { value: 1990, suffix: "", label: "History since" },
+  { value: 1990, suffix: "", label: "History since", useGrouping: false },
   { value: 4, suffix: "", label: "Macro regimes" },
-  { value: 3, suffix: "", label: "Endpoints" },
+  { value: 4, suffix: "", label: "Endpoints" },
 ];
 
-function AnimatedNumber({ to }: { to: number }) {
+function AnimatedNumber({ to, useGrouping = true }: { to: number; useGrouping?: boolean }) {
   const [n, setN] = useState(0);
   useEffect(() => {
     const start = performance.now();
@@ -27,7 +27,7 @@ function AnimatedNumber({ to }: { to: number }) {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [to]);
-  return <span className="tabular-nums">{n.toLocaleString()}</span>;
+  return <span className="tabular-nums">{n.toLocaleString(undefined, { useGrouping })}</span>;
 }
 
 export function HeroSection() {
@@ -121,7 +121,7 @@ export function HeroSection() {
               {stats.map((s) => (
                 <div key={s.label} className="bg-surface-1 p-4 md:p-5">
                   <div className="text-2xl md:text-3xl font-semibold tracking-tight">
-                    <AnimatedNumber to={s.value} />{s.suffix}
+                    <AnimatedNumber to={s.value} useGrouping={s.useGrouping} />{s.suffix}
                   </div>
                   <div className="mt-1 text-xs uppercase tracking-wider text-muted-foreground">{s.label}</div>
                 </div>

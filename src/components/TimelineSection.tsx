@@ -6,7 +6,7 @@ import { getRegimeColor } from "@/lib/format";
 import { SectionHeader } from "./SectionHeader";
 
 export function TimelineSection() {
-  const { data, loading } = useRegimeHistory({ start: "2000-01" });
+  const { data, loading } = useRegimeHistory({ start: "2000-01-01" });
 
   const { chartData, regimes } = useMemo(() => {
     const points = data?.points ?? [];
